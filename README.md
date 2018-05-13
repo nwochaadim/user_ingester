@@ -1,24 +1,50 @@
-# README
+# UserIngester
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+UserIngester is a Rails 5.1.6 application.
 
-Things you may want to cover:
+The core functionality of the app is to read csv_records from a provided url and then ingest this records into a db.
 
-* Ruby version
+## Architecture
 
-* System dependencies
+The UML diagram below illustrates the entire application's architecture
 
-* Configuration
+![Application Architecture](https://i.imgur.com/Lav3v9c.png)
 
-* Database creation
+## Setup
 
-* Database initialization
+1. Get the code.
 
-* How to run the test suite
+        % git clone https://github.com/nwochaadim/user_ingester
 
-* Services (job queues, cache servers, search engines, etc.)
+2. Cd into directory
 
-* Deployment instructions
+        % cd user_ingester/
 
-* ...
+3. Set up the application
+
+        % bin/setup
+
+## Usage
+The csv record importation is handled via a rake task which can be seen by running:
+
+        % rake -T | grep import
+
+To run this task, you may choose to provide an optional import url
+
+        % rake users:import['optional import url']
+
+## Testing
+
+This project follows BDD/TDD best practices.
+
+        % bin/rspec spec/
+
+## Continuous Integration
+
+CI is hosted with [CircleCI](https://circleci.com/gh/nwochaadim/user_ingester). The
+build is run automatically whenever any branch is updated on Github.
+
+## Dependencies
+Refer to [Gemfile](https://github.com/nwochaadim/user_ingester/blob/master/Gemfile) for list of gem dependencies
+
+[Postgresql](http://www.postgresqltutorial.com/install-postgresql/): The Project uses postgres as its database.
