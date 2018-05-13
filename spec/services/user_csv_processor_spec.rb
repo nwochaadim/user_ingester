@@ -73,5 +73,17 @@ describe UserCSVProcessor do
         expect(Rails.logger).to have_received(:error)
       end
     end
+
+    context "when the csv_text is nil" do
+      let(:csv_text) { nil }
+
+      it "does not parse the text" do
+        allow(CSV).to receive(:parse)
+
+        processor.call
+
+        expect(CSV).to_not have_received(:parse)
+      end
+    end
   end
 end

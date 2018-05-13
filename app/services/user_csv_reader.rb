@@ -7,7 +7,7 @@ class UserCSVReader
 
   def read
     open(url)
-  rescue SocketError => e
+  rescue SocketError, OpenURI::HTTPError => e
     Rails.logger.error(e.message)
     nil
   end

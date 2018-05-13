@@ -6,6 +6,7 @@ class UserCSVProcessor
   end
 
   def call
+    return if csv_text.nil?
     parsed_records = CSV.parse(csv_text, headers: true)
     parsed_records.each do |record|
       process_record(record)
